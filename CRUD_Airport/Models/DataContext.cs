@@ -24,5 +24,7 @@ namespace CRUD_Airport.Models
 
         }
         public DbSet<Airplanes> Airplanes { get; set; }
+        public DbSet<Pilot> Pilot { get; set; }
+        public DbSet<Stuardess> Stuardess { get; set; }
     }
 }

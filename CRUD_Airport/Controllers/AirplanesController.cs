@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CRUD_Airport.Models;
+
+
 namespace CRUD_Airport.Controllers
 {
+
 
     [Route("api/Airplanes")]
 
@@ -14,9 +17,10 @@ namespace CRUD_Airport.Controllers
     {
         private DataContext db = new DataContext();
 
+
         [Produces("application/json")]
-        [HttpGet("fFindall")]
-        public async Task<IActionResult> Findall()
+        [HttpGet("Findall")]
+        public async Task<IActionResult> Findall()   // Read all Airplanes
         {
             try
             {
@@ -31,7 +35,7 @@ namespace CRUD_Airport.Controllers
 
         [Produces("application/json")]
         [HttpGet("find/{id}")]
-        public async Task<IActionResult> Find(int id)
+        public async Task<IActionResult> Find(int id)   // Read(ID) Airplane
         {
             try
             {
@@ -47,7 +51,7 @@ namespace CRUD_Airport.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] Airplanes airplane)
+        public async Task<IActionResult> Create([FromBody] Airplanes airplane) // Create new Airplane
         {
             try
             {
@@ -66,7 +70,7 @@ namespace CRUD_Airport.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] Airplanes airplane)
+        public async Task<IActionResult> Update([FromBody] Airplanes airplane)  // Update info Airplane
         {
             try
             {
@@ -82,7 +86,7 @@ namespace CRUD_Airport.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)    // Delete(ID) Airplane
         {
             try
             {
@@ -95,5 +99,11 @@ namespace CRUD_Airport.Controllers
                 return BadRequest();
             }
         }
+
+
+        // Example one of CRUDs  for Pilots
+        //[Produces("application/json")]
+        //[HttpGet("Findall/Pilot")]
+        // Here must be a function like:    Pilot.Findall();
     }
 }
