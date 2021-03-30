@@ -1,31 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+using CRUD_Airport.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CRUD_Airport.Models;
-
 
 namespace CRUD_Airport.Controllers
 {
-
-
-    [Route("api/Airplanes")]
-
-    public class AirplanesController : ControllerBase
+    [Route("api/EmpoyeeInfo")]
+    public class EmpoyeeInfoController : ControllerBase
     {
         private DataContext db = new DataContext();
+
 
         //Findall
         [Produces("application/json")]
         [HttpGet("Findall")]
-        public async Task<IActionResult> Findall()   // Read all Airplanes
+        public async Task<IActionResult> Findall()
         {
             try
             {
-                var airplanes = db.Airplanes.ToList();
-                return Ok(airplanes);
+                var employee = db.EmployeeInfo.ToList();
+                return Ok(employee);
             }
             catch (Exception ex)
             {
@@ -36,12 +31,12 @@ namespace CRUD_Airport.Controllers
         //Find(ID)
         [Produces("application/json")]
         [HttpGet("Find/{id}")]
-        public async Task<IActionResult> Find(int id)   // Read(ID) Airplane
+        public async Task<IActionResult> Find(int id)
         {
             try
             {
-                var airplanes = db.Airplanes.Find(id);
-                return Ok(airplanes);
+                var employee = db.EmployeeInfo.Find(id);
+                return Ok(employee);
             }
             catch (Exception ex)
             {
@@ -53,33 +48,33 @@ namespace CRUD_Airport.Controllers
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] Airplanes airplane) // Create new Airplane
+        public async Task<IActionResult> Create([FromBody] EmployeeInfo employee)
         {
+
             try
             {
-                db.Airplanes.Add(airplane);
+                db.EmployeeInfo.Add(employee);
                 db.SaveChanges();
-                return Ok(airplane);
+                return Ok(employee);
             }
             catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-
 
         //Update
         [Produces("application/json")]
         [Consumes("application/json")]
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] Airplanes airplane)  // Update info Airplane
+        public async Task<IActionResult> Update([FromBody] EmployeeInfo employee)
         {
             try
             {
-                db.Entry(airplane).State =
+                db.Entry(employee).State =
                     Microsoft.EntityFrameworkCore.EntityState.Modified;
                 db.SaveChanges();
-                return Ok(airplane);
+                return Ok(employee);
             }
             catch (Exception ex)
             {
@@ -87,14 +82,13 @@ namespace CRUD_Airport.Controllers
             }
         }
 
-
-        //Delete
+        //Delete 
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> Delete(int id)    // Delete(ID) Airplane
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                db.Airplanes.Remove(db.Airplanes.Find(id));
+                db.EmployeeInfo.Remove(db.EmployeeInfo.Find(id));
                 db.SaveChanges();
                 return Ok();
             }
@@ -105,6 +99,6 @@ namespace CRUD_Airport.Controllers
         }
 
 
-    
+
     }
 }

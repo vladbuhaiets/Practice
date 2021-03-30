@@ -10,5 +10,9 @@
     <PackageReference Include="VisioForge.DotNet.Core.TRIAL" Version="14.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Operations\" />
+  </ItemGroup>
+
 
 </Project>
